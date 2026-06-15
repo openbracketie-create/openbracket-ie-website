@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBracket IE - Premium Fresh Produce Exporter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #161b66;
+            --primary-light: #1e2577;
+            --accent: #4a90e2;
+            --text-dark: #2c3e50;
+            --text-light: #4a5568;
+            --bg-gray: #f8fafc;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: #ffffff;
+            border-bottom: 2px solid var(--primary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-box {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary);
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        .company-info h1 {
+            font-size: 22px;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .company-info p {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #ffffff;
+            padding: 90px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('image_a0e6e5.jpg') center/cover no-repeat;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            line-height: 1.8;
+            max-width: 650px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            background-color: #357abd;
+        }
+
+        /* Main Content Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .heading-wrapper {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h2.section-heading {
+            font-size: 32px;
+            color: var(--primary);
+            padding-bottom: 15px;
+            border-bottom: 4px solid var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--bg-gray);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(22, 27, 102, 0.15);
+        }
+
+        .product-img-wrapper {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background-color: #f1f5f9;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.06);
+        }
+
+        .product-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-card h3 {
+            font-size: 19px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .inquire-btn {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .inquire-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* About Section Layout */
+        #about {
+            background-color: var(--bg-gray);
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .about-layout {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.9;
+        }
+
+        .about-text strong {
+            color: var(--primary);
+        }
+
+        /* Interactive Inquiry Modal Form */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-btn:hover {
+            color: black;
+        }
+
+        .modal h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #357abd;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111544;
+            color: #e2e8f0;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            text-align: center;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--primary);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: bold;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            h2.section-heading {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-box">][</div>
+                <div class="company-info">
+                    <h1>OpenBracket IE</h1>
+                    <p>Connecting Global Markets with Fresh Agricultural Excellence</p>
+                </div>
+            </div>
+            <nav>
+                <a href="#products">Products</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Premium Quality Fresh Fruits & Vegetables Export</h2>
+            <p>Sourcing directly from the finest agricultural belts of India to deliver absolute freshness, robust grading quality, and reliable global supply chain logistics.</p>
+            <a href="#products" class="hero-btn">Explore Portfolio</a>
+        </div>
+    </section>
+
+    <main>
+        <section class="section container" id="products">
+            <div class="heading-wrapper">
+                <h2 class="section-heading">Our Export Portfolio</h2>
+            </div>
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="image_a0e7c2.jpg" alt="Fresh Onions" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Onions</h3>
+                        <p>Top-grade pink, red, and white onions carefully sorted, size-graded, and packed in well-ventilated mesh bags to guarantee optimal shelf life during transit.</p>
+                        <button class="inquire-btn" onclick="openModal('Fresh Onions')">Inquire Product</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="image_a0e783.jpg" alt="Fresh Chilies" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Green & Red Chilies</h3>
+                        <p>Handpicked spicy, uniform-colored fresh Indian chilies possessing excellent pungency. Processed under hygienic conditions to maintain natural crispness.</p>
+                        <button class="inquire-btn" onclick="openModal('Fresh Green & Red Chilies')">Inquire Product</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="image_a0e724.jpg" alt="Premium Pomegranates" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Pomegranates</h3>
+                        <p>Export-quality Bhagwa pomegranates known for deep red arils, soft seeds, thick skin, and high juice content. Packed perfectly to avoid any bruising.</p>
+                        <button class="inquire-btn" onclick="openModal('Premium Pomegranates')">Inquire Product</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="image_a0e6e5.jpg" alt="Seasonal Produce" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3>Seasonal Fruits & Vegetables</h3>
+                        <p>A comprehensive choice of pristine quality agricultural produce tailored directly to meet strict international phytosanitary import benchmarks.</p>
+                        <button class="inquire-btn" onclick="openModal('Seasonal Fruits & Vegetables')">Inquire Product</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="container">
+                <div class="about-layout">
+                    <h2 class="section-heading" style="margin-bottom: 30px;">Corporate Profile</h2>
+                    <p class="about-text">
+                        Based strategically in Maharashtra, the agricultural trading hub of western India, <strong>OpenBracket IE</strong> operates as a dedicated partner in international trade. We bridge the gap between regional farm produce excellence and international buyers requiring timely deliveries, transparent contracts, and elite operational governance.
+                        <br><br>
+                        Our processing systems ensure that goods are harvested, size-checked, sorted, and loaded into climate-controlled shipping logistics efficiently to lock in nutrition, natural crispness, and flavor all the way to destination markets.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="inquiryModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>Product Inquiry Form</h3>
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="productName">Selected Product</label>
+                    <input type="text" id="productName" readonly style="background-color: #f1f5f9; font-weight: bold; color: var(--primary);">
+                </div>
+                <div class="form-group">
+                    <label for="buyerName">Your Name / Company</label>
+                    <input type="text" id="buyerName" required placeholder="e.g. Global Foods LLC">
+                </div>
+                <div class="form-group">
+                    <label for="buyerEmail">Email Address</label>
+                    <input type="email" id="buyerEmail" required placeholder="name@company.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Requirement Details (Quantity, Destination Port)</label>
+                    <textarea id="message" rows="4" required placeholder="Please state your required metrics (e.g. 25 MT to Port of Rotterdam)..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Trade Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>International Trade Inquiries</h4>
+                <p><strong>Contact Person:</strong> Rohit Patil</p>
+                <p><strong>Mobile / WhatsApp:</strong> <a href="tel:+918108050990" class="contact-link">+91 8108050990</a></p>
+                <p><strong>Official Email:</strong> <a href="mailto:openbracketie@gmail.com" class="contact-link">openbracketie@gmail.com</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Global Desk Hours</h4>
+                <p>Monday – Saturday: 09:00 AM – 06:00 PM (IST)</p>
+                <p>Inquiries received via email are evaluated within 12 business hours by our trade execution desk.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Our Location</h4>
+                <p>Shop No 26, First Floor, Crystal Plaza Premises</p>
+                <p>Plot No 18 & 27, Sector 7, Kharghar</p>
+                <p>Raigad, Maharashtra, India - 410210</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 OpenBracket IE. All Rights Reserved. Sourcing Agricultural Quality Globally.</p>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop">&#8593;</a>
+
+    <script>
+        // Modal elements
+        const modal = document.getElementById('inquiryModal');
+        const productInput = document.getElementById('productName');
+        const backToTop = document.getElementById('backToTop');
+
+        function openModal(productName) {
+            productInput.value = productName;
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+        }
+
+        // Close modal if user clicks outside of the dialog box
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Form submission popup response logic
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert(`Thank you for your interest in ${productInput.value}! Your inquiry has been recorded successfully. Our export team will connect with you via email within 12 business hours.`);
+            closeModal();
+            event.target.reset();
+        }
+
+        // Toggle back to top button visibility during scroll behavior
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        };
+    </script>
+</body>
+</html>
